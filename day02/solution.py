@@ -8,10 +8,10 @@ def solve_part1(input: str) -> int:
         # Parse the line
         (settings, text) = line.split(": ")
         (minmax, char) = settings.split(" ")
-        (min, max) = minmax.split("-")
+        (min, max) = [int(x) for x in minmax.split("-")]
 
         c = text.count(char)
-        if c >= int(min) and c <= int(max):
+        if c >= min and c <= max:
             r += 1
 
     return r
@@ -24,11 +24,9 @@ def solve_part2(input: str) -> int:
         # Parse the line
         (settings, text) = line.split(": ")
         (minmax, char) = settings.split(" ")
-        (min, max) = minmax.split("-")
-        min = int(min)
-        max = int(max)
+        (i1, i2) = [int(x)-1 for x in minmax.split("-")]
 
-        if (text[min-1] == char) != (text[max-1] == char):
+        if (text[i1] == char) != (text[i2] == char):
             r += 1
 
     return r
