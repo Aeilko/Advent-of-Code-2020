@@ -11,7 +11,7 @@ def solve_part1(input: str) -> int:
         (min, max) = [int(x) for x in minmax.split("-")]
 
         c = text.count(char)
-        if c >= min and c <= max:
+        if min <= c <= max:
             r += 1
 
     return r
