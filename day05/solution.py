@@ -68,6 +68,7 @@ def test_part1():
 
 
 def test_part2():
+    # There are no tests for part 2 in this case, but our answer was correct the first time, oh well.
     inp = read_file_content("inputs/test")
     answer = int(read_file_content("inputs/ans2"))
 
