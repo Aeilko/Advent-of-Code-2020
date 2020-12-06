@@ -29,7 +29,7 @@ def find_seat(inp: str):
 
 
 def solve_part1(inp: str) -> int:
-    inp = inp.split("\n")
+    inp = inp[:-1].split("\n")
     maxSeatID = 0
     for line in inp:
         row = find_row(line[:7])
@@ -42,7 +42,7 @@ def solve_part1(inp: str) -> int:
 
 def solve_part2(inp: str) -> int:
     occupied = [False]*(128*8)
-    inp = inp.split("\n")
+    inp = inp[:-1].split("\n")
     for line in inp:
         row = find_row(line[:7])
         seat = find_seat(line[7:])
@@ -56,11 +56,38 @@ def solve_part2(inp: str) -> int:
     return -1
 
 
+def solve_part1_binary(inp: str) -> int:
+    inp = inp[:-1].split("\n")
+    max_seat = 0
+    for line in inp:
+        line = line.replace('F', '0').replace('B', '1')
+        line = line.replace('L', '0').replace('R', '1')
+        seat_id = int(line, 2)
+        if seat_id > max_seat:
+            max_seat = seat_id
+    return max_seat
+
+def solve_part2_binary(inp: str) -> int:
+    inp = inp[:-1].split("\n")
+    occupied = [False]*(128*8)
+    for line in inp:
+        line = line.replace('F', '0').replace('B', '1')
+        line = line.replace('L', '0').replace('R', '1')
+        seat_id = int(line, 2)
+        occupied[seat_id] = True
+
+    for i in range(len(occupied)):
+        if occupied[i] == False:
+            if occupied[i-1] == True and occupied[i+2] == True:
+                return i
+    return -1
+
+
 def test_part1():
     inp = read_file_content("inputs/test")
     answer = int(read_file_content("inputs/ans1"))
 
-    result = solve_part1(inp)
+    result = solve_part1_binary(inp)
     if result == answer:
         print("Test successful")
     else:
@@ -72,7 +99,7 @@ def test_part2():
     inp = read_file_content("inputs/test")
     answer = int(read_file_content("inputs/ans2"))
 
-    result = solve_part2(inp)
+    result = solve_part2_binary(inp)
     if result == answer:
         print("Test successful")
     else:
@@ -85,8 +112,8 @@ if __name__ == '__main__':
 
     print(" --- Part 1 --- ")
     test_part1()
-    print("Part 1 result:\t" + str(solve_part1(inp)))
+    print("Part 1 result:\t" + str(solve_part1_binary(inp)))
 
     print("\n --- Part 2 ---")
     test_part2()
-    print("Part 2 result:\t" + str(solve_part2(inp)))
+    print("Part 2 result:\t" + str(solve_part2_binary(inp)))
