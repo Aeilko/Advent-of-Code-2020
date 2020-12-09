@@ -1,5 +1,5 @@
 from utils.file import read_file_content
-from utils.list import list_min, list_max
+from utils.list import find_min, find_max
 
 
 def solve_part1(inp: str, steps=25) -> int:
@@ -46,8 +46,8 @@ def solve_part2(inp: str, steps=25) -> int:
             break
 
     vals = [int(x) for x in inp[minI:maxI+1]]
-    min = list_min(vals)
-    max = list_max(vals)
+    min = find_min(vals)
+    max = find_max(vals)
 
     return min+max
 
