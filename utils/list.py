@@ -12,6 +12,14 @@ def list_equals(l1: list, l2: list) -> bool:
     return True
 
 
+def list_min(l: iter):
+    min = sys.maxsize
+    for x in l:
+        if x < min:
+            min = x
+    return min
+
+
 def list_max(l: iter):
     # For some reason sys.maxsize+1 does not overflow to the min value?
     max = sys.maxsize*-1
@@ -21,9 +29,4 @@ def list_max(l: iter):
     return max
 
 
-def list_min(l: iter):
-    min = sys.maxsize
-    for x in l:
-        if x < min:
-            min = x
-    return min
+

@@ -11,7 +11,6 @@ def solve_part1(inp: str, steps=25) -> int:
         if len(queue) < steps:
             queue.append(val)
         else:
-            # print(str(val) + ": " + str(queue))
             found = False
             for x in queue:
                 rest = val-x
