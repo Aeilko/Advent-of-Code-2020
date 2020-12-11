@@ -30,4 +30,18 @@ def find_max(l: iter) -> int:
     return max
 
 
+def deep_copy(l: list) -> list:
+    r = [None] * len(l)
+    for i in range(len(l)):
+        r[i] = l[i]
+    return r
+
+
+def double_deep_copy(l: list) -> list:
+    r = [None] * len(l)
+    for i in range(len(l)):
+        r[i] = [None] * len(l[i])
+        for j in range(len(l[i])):
+            r[i][j] = l[i][j]
+    return r
 
