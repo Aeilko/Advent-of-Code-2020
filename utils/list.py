@@ -45,3 +45,13 @@ def double_deep_copy(l: list) -> list:
             r[i][j] = l[i][j]
     return r
 
+
+def generic_deep_copy(state: list) -> list:
+    r = []
+    for x in state:
+        if type(x) == "list":
+            r.append(generic_deep_copy(x))
+        else:
+            r.append(x)
+    return r
+
