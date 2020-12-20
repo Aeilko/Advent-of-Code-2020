@@ -40,7 +40,22 @@ def solve_part1(inp: str) -> int:
             else:
                 borders[b] = {t}
 
-    # Match borders
+    # Find the amount of unmatched borders
+    counts = {}
+    for b in borders:
+        if len(borders.get(b)) == 1:
+            for id in borders.get(b):
+                if id in counts:
+                    counts[id] += 1
+                else:
+                    counts[id] = 1
+
+    # Tiles with 2 unmatched borders are corners
+    r = 1
+    for c in counts:
+        if counts.get(c) == 2:
+            r *= c
+    return r
     
 
 def solve_part2(inp: str) -> int:
