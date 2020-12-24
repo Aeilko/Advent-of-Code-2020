@@ -89,7 +89,6 @@ def solve_part2(inp: str) -> int:
     llist.values[1000000].next = current
 
     for _ in range(10000000):
-        # for _ in range(10):
         tmp = current
         picked = []
         for _ in range(3):
