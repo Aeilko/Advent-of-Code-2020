@@ -35,17 +35,6 @@ def solve_part1(inp: str) -> int:
     return len(active)
 
 
-def find_min_max(active: dict, param: int) -> (int, int):
-    min = 100000000
-    max = 0
-    for item in active:
-        if item[param] > max:
-            max = item[param]
-        if item[param] < min:
-            min = item[param]
-    return (min, max)
-
-
 def get_neighbours(x, y, z):
     r = set()
     r.add((x+1, y-1, z))
@@ -87,7 +76,7 @@ def solve_part2(inp: str) -> int:
         else:
             active.add((x, y, z))
 
-    for _ in range(10):
+    for _ in range(100):
         old = set(active)
         active_neighbours = {}
         for (x, y, z) in old:
@@ -103,13 +92,12 @@ def solve_part2(inp: str) -> int:
                     else:
                         active_neighbours[(nx, ny, nz)] = 1
 
-            if n != 1:
+            if n == 0 or n > 2:
                 active.remove((x, y, z))
 
         for (x, y, z) in active_neighbours:
             if active_neighbours[(x, y, z)] == 2:
                 active.add((x, y, z))
-        print(len(active))
 
     return len(active)
 
@@ -145,4 +133,4 @@ if __name__ == '__main__':
 
     print("\n --- Part 2 ---")
     test_part2()
-    # print("Part 2 result:\t" + str(solve_part2(inp)))
+    print("Part 2 result:\t" + str(solve_part2(inp)))
